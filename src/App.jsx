@@ -19,12 +19,16 @@ const post = [
 ];
 
 function App() {
-  console.log(post);
+  //console.log(post);
+  const [newTitle, setNewTitle] = useState("");
+  function addPost(event) {
+    event.preventDefault();
+    console.log("invio");
+  }
 
   return (
     <>
       <h1>Lista Articoli</h1>
-
       {/* MAP */}
       {post.map((post) => (
         <article key={post.id}>
@@ -32,6 +36,19 @@ function App() {
           <p>{post.description}</p>
         </article>
       ))}
+
+      <h2>Crea un articolo</h2>
+      <form onSubmit={addPost}>
+        <article>Titolo</article>
+        <input
+          type="text"
+          value={newTitle}
+          onChange={(event) => setNewTitle(event.target.value)}
+        />
+        <button>Aggiungi articolo</button>
+
+        {newTitle}
+      </form>
     </>
   );
 }
